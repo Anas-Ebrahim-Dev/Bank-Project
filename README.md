@@ -24,9 +24,7 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 1 — Find Client from a text file .      
 
-
-
-
+\- Feature 2 — Update Client in a text file .
 
 ---
 
@@ -60,7 +58,8 @@ A bank system dealing with clients and make basic bank operations .
 
 &nbsp; - \[string libirary] – A user defiend helper class . 
 
-&nbsp;   
+&nbsp; - \[InputValidate libirary] – A user defiend helper class . 
+
 
 
 
@@ -72,11 +71,11 @@ A bank system dealing with clients and make basic bank operations .
 
 
 
-\## 👨‍💻 Author
+\ 👨‍💻 Author
 
 Anas Ebrahim    
 
-📫 Contact: \[anas.ebrahim.dev@gmail.com] . 
+📫 Contact: \[ anas.ebrahim.dev@gmail.com ] . 
 
-🌐 GitHub: \[https://github.com/Anas-Ebrahim-Dev] .
+🌐 GitHub: \ [https://github.com/Anas-Ebrahim-Dev](https://github.com/Anas-Ebrahim-Dev).
 
