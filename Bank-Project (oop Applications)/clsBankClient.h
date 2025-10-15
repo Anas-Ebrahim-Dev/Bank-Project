@@ -4,10 +4,14 @@
 #include <fstream>
 #include "clsPerson.h"
 #include "clsString.h"
+#include "clsInputValidate.h"
 
 using namespace std;
 
 const string FileName = "BankClients.txt";
+
+
+
 
 class clsBankClient : public clsPerson
 {
@@ -43,6 +47,82 @@ private:
 	{
 		return clsBankClient(enState::Empty, "", "", "", "", "", "", 0);
 	}
+
+	string _ConvertToLine()
+	{
+		string Delemeter = "#//#";
+
+		return GetFirstName() + Delemeter + GetLastName() + Delemeter + GetEmail() + Delemeter + GetPhone() + Delemeter 
+			+ _AccountNumber + Delemeter+ _PinCode + Delemeter + to_string(_Balance);
+	}
+
+	static vector <clsBankClient> _LoadDataFromFileToVector()
+	{
+		vector <clsBankClient> vClients;
+		fstream File;
+		string Line = "";
+
+		File.open(FileName, ios::in);
+
+		if (File.is_open())
+		{
+			while (getline(File, Line))
+			{
+				vClients.push_back(_ConvertLineToClient(Line));
+
+			}
+		}
+		File.close();
+
+		return vClients;
+
+	}
+
+	static void _SaveVectorToFile(vector <clsBankClient> vClients)
+	{
+		fstream File;
+
+		File.open(FileName, ios::out);
+
+		if (File.is_open())
+		{
+			for (clsBankClient& Client : vClients)
+			{
+				File << Client._ConvertToLine() << endl;
+
+			}
+			File.close();
+
+		}
+
+
+	}
+
+	void _UpdateInVector(vector <clsBankClient> &vClients)
+	{
+
+		for (clsBankClient& Client : vClients)
+		{
+			if (Client.GetAccountNumber() == _AccountNumber)
+			{
+				Client = (*this);
+				break;
+			}
+		}
+
+	}
+
+	void _Update()
+	{
+		vector <clsBankClient> vClients = _LoadDataFromFileToVector();
+
+		_UpdateInVector(vClients);
+
+		_SaveVectorToFile(vClients);
+
+	}
+
+
 
 
 public:
@@ -92,22 +172,22 @@ public:
 
 	}
 
-	void Print()
+
+	string ToString()
 	{
-		cout << "\nClient Card:";
-		cout << "\n___________________";
-		cout << "\nFirstName   : " << GetFirstName();
-		cout << "\nLastName    : " << GetLastName();
-		cout << "\nFull Name   : " << GetFirstName() + " " + GetLastName();
-		cout << "\nEmail       : " << GetEmail();
-		cout << "\nPhone       : " << GetPhone();
-		cout << "\nAcc. Number : " << _AccountNumber;
-		cout << "\nPassword    : " << _PinCode;
-		cout << "\nBalance     : " << _Balance;
-		cout << "\n___________________\n";
+		string ClientCard = "";
 
+		ClientCard += "\nFirstName   : " + GetFirstName();
+		ClientCard += "\nLastName    : " + GetLastName();
+		ClientCard += "\nFull Name   : " + GetFirstName() + " " + GetLastName();
+		ClientCard += "\nEmail       : " + GetEmail();
+		ClientCard += "\nPhone       : " + GetPhone();
+		ClientCard += "\nAcc. Number : " + _AccountNumber;
+		ClientCard += "\nPassword    : " + _PinCode;
+		ClientCard += "\nBalance     : " + to_string(_Balance);
+
+		return ClientCard;
 	}
-
 
 
 
@@ -161,6 +241,25 @@ public:
 
 		return Client.IsFound();
 	}
+
+
+
+
+	bool Save()
+	{
+		if (IsFound())
+		{
+			_Update();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+
 
 
 };

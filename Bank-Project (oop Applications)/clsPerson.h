@@ -7,6 +7,7 @@ class clsPerson
 
 private:
 
+
 	string _FirstName;
 	string _LastName;
 	string _Email;
@@ -28,6 +29,7 @@ public:
 	void SetFirstName(string FirstName)
 	{
 		_FirstName = FirstName;
+
 	}
 	string GetFirstName()
 	{
