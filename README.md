@@ -26,6 +26,9 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 2 — Update Client in a text file .
 
+\- Feature 3 — Add Client in a text file .
+
+
 ---
 
 
@@ -70,12 +73,11 @@ A bank system dealing with clients and make basic bank operations .
 
 
 
-
-\ 👨‍💻 Author
+ 👨‍💻 Author
 
 Anas Ebrahim    
 
-📫 Contact: \[ anas.ebrahim.dev@gmail.com ] . 
+📫 Contact: [ anas.ebrahim.dev@gmail.com ] . 
 
-🌐 GitHub: \ [https://github.com/Anas-Ebrahim-Dev](https://github.com/Anas-Ebrahim-Dev).
+🌐 GitHub:  [https://github.com/Anas-Ebrahim-Dev](https://github.com/Anas-Ebrahim-Dev).
 

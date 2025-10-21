@@ -19,7 +19,7 @@ class clsBankClient : public clsPerson
 
 public:
 
-	enum enState { Empty = 0, Loded = 1 };
+	enum enState { Empty = 0, Update = 1, Add = 2 };
 
 
 private:
@@ -39,14 +39,11 @@ private:
 		vFelids = clsString::vSplit(Line, "#//#");
 
 
-		return  clsBankClient(enState::Loded, vFelids[0], vFelids[1], vFelids[2], vFelids[3], vFelids[4], vFelids[5], stod(vFelids[6]));
+		return  clsBankClient(enState::Update, vFelids[0], vFelids[1], vFelids[2], vFelids[3], vFelids[4], vFelids[5], stod(vFelids[6]));
 
 	}
 
-	static clsBankClient _EmptyClient()
-	{
-		return clsBankClient(enState::Empty, "", "", "", "", "", "", 0);
-	}
+
 
 	string _ConvertToLine()
 	{
@@ -112,6 +109,22 @@ private:
 
 	}
 
+	static void _AddClientToFile(string ClientAsLine)
+	{
+
+		fstream File;
+
+		File.open(FileName, ios::out | ios::app);
+
+		if (File.is_open())
+		{
+			File << ClientAsLine << endl;
+		}
+
+		File.close();
+
+	}
+
 	void _Update()
 	{
 		vector <clsBankClient> vClients = _LoadDataFromFileToVector();
@@ -122,7 +135,16 @@ private:
 
 	}
 
+	void _AddNew()
+	{
+		string ClientAsLine = (*this)._ConvertToLine();
 
+		_AddClientToFile(ClientAsLine);
+
+		_State = enState::Update;
+
+
+	}
 
 
 public:
@@ -154,7 +176,10 @@ public:
 		return _PinCode;
 	}
 
-
+	void SetBalance(double Balance)
+	{
+		_Balance = Balance;
+	}
 	double GetBalance()
 	{
 		return _Balance;
@@ -177,6 +202,7 @@ public:
 	{
 		string ClientCard = "";
 
+		ClientCard += "\n----------------------------------";
 		ClientCard += "\nFirstName   : " + GetFirstName();
 		ClientCard += "\nLastName    : " + GetLastName();
 		ClientCard += "\nFull Name   : " + GetFirstName() + " " + GetLastName();
@@ -185,8 +211,10 @@ public:
 		ClientCard += "\nAcc. Number : " + _AccountNumber;
 		ClientCard += "\nPassword    : " + _PinCode;
 		ClientCard += "\nBalance     : " + to_string(_Balance);
+		ClientCard += "\n----------------------------------";
 
 		return ClientCard;
+
 	}
 
 
@@ -222,7 +250,8 @@ public:
 			}
 
 			File.close();
-			return _EmptyClient();
+
+			return clsBankClient::EmptyClient();
 		}
 
 
@@ -231,8 +260,7 @@ public:
 
 	bool IsFound()
 	{
-		return (_State != Empty);
-
+		return (_State == enState::Update);
 	}
 
 	static bool IsFound(string AccountNumber)
@@ -240,24 +268,65 @@ public:
 		clsBankClient Client = Find(AccountNumber);
 
 		return Client.IsFound();
+
 	}
 
-
-
-
-	bool Save()
+	static clsBankClient EmptyClient()
 	{
-		if (IsFound())
+		return clsBankClient(enState::Empty, "", "", "", "", "", "", 0);
+	}
+
+	enum enSaveState { Updated, Added, svFailed_EmptyClient, svFailed_ClientNotExist, svFailed_ClientExists };
+
+	bool IsEmpty()
+	{
+		return (_State == enState::Empty);
+	}
+
+
+	enSaveState Save()
+	{
+
+		switch (_State)
 		{
-			_Update();
-			return true;
-		}
-		else
-		{
-			return false;
+		case clsBankClient::Empty:
+
+			return enSaveState::svFailed_EmptyClient;
+
+		case clsBankClient::Update:
+			if (IsFound(_AccountNumber))
+			{
+				_Update();
+				return enSaveState::Updated;
+
+			}
+			else
+			{
+				return  enSaveState::svFailed_ClientNotExist;
+			}
+
+		case clsBankClient::Add:
+			if (!(IsFound(_AccountNumber)))
+			{
+				_AddNew();
+				return enSaveState::Added;
+
+			}
+			else
+			{
+				return enSaveState::svFailed_ClientExists;
+			}
+
+
+		default:
+
+			return enSaveState::svFailed_EmptyClient;
+
 		}
 
 	}
+
+
 
 
 

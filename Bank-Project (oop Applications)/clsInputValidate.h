@@ -44,6 +44,7 @@ public:
 	{
 		double Number = 0;
 
+		cout << Message;
 		cin >> Number;
 
 		while (cin.fail())
