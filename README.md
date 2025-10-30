@@ -28,6 +28,8 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 3 — Add Client in a text file .
 
+\- Feature 3 — Delete Client in a text file .
+
 
 ---
 

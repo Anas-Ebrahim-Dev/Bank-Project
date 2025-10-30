@@ -105,7 +105,15 @@ public:
 
 	}
 
+	static char ReadChar(string Message)
+	{
+		char Char = ' ';
 
+		cout << Message;
+		cin >> Char;
+
+		return Char;
+	}
 
 };
 

@@ -20,7 +20,6 @@ void ReadUpdatedClientInfo(clsBankClient &Client)
 
 }
 
-
  void UpdateClient()
  { 
 
@@ -56,9 +55,7 @@ void ReadUpdatedClientInfo(clsBankClient &Client)
  }
 
 
-
-
-
+ 
  void ReadNewClientInfo(clsBankClient& Client)
  {
 
@@ -93,7 +90,7 @@ void ReadUpdatedClientInfo(clsBankClient &Client)
 
 
 
-	 clsBankClient Client(clsBankClient::enState::Add, "", "", "", "", AccountNumber, "", 0);
+	 clsBankClient Client = clsBankClient::GetNewClient(AccountNumber);
 
 
 	 ReadNewClientInfo(Client);
@@ -128,12 +125,67 @@ void ReadUpdatedClientInfo(clsBankClient &Client)
  }
 
 
+ bool DeleteClient()
+ {
+
+	 cout << "Delete client . \n";
+
+	 string AccountNumber = clsInputValidate::ReadString("Enter account number : ");
+
+	 while (!(clsBankClient::IsFound(AccountNumber)))
+	 {
+		 AccountNumber = clsInputValidate::ReadString("Client dosen't exist . Enter account number : ");
+	 }
+
+
+	 clsBankClient Client = clsBankClient::Find(AccountNumber);
+
+	 cout << Client.ToString();
+
+
+	 char Confirm = clsInputValidate::ReadChar("\nAre you sure to delete this client (Y/N) ? ");
+
+
+
+	 if (Confirm == 'Y' || Confirm == 'y')
+	 {
+		 if (clsBankClient::Delete(AccountNumber))
+		 {
+			 cout << "Client deleted successfully .";
+
+			 return true;
+
+		 }
+		 else
+		 {
+			 cout << "Error occured . client was not deleted";
+			 return false;
+
+		 }
+		 
+
+	 }
+	 else
+	 {
+		 cout << "Delete has been cancelled .";
+		 return false;
+
+	 }
+
+
+
+
+
+ }
+
 
 int main()
 {
 
-	AddClient();
 
+
+
+	DeleteClient();
 
 
 

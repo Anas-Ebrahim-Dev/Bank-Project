@@ -28,6 +28,7 @@ private:
 	string _PinCode;
 	double _Balance;
 	enState _State;
+	bool _MarkForDelete;
 
 
 private:
@@ -75,7 +76,7 @@ private:
 
 	}
 
-	static void _SaveVectorToFile(vector <clsBankClient> vClients)
+	static void _SaveVectorToFile(vector <clsBankClient> &vClients)
 	{
 		fstream File;
 
@@ -85,7 +86,11 @@ private:
 		{
 			for (clsBankClient& Client : vClients)
 			{
-				File << Client._ConvertToLine() << endl;
+				if (Client._MarkForDelete == false)
+				{
+					File << Client._ConvertToLine() << endl;
+
+				}
 
 			}
 			File.close();
@@ -146,6 +151,21 @@ private:
 
 	}
 
+	static void _MarkForDeleteInVector(vector <clsBankClient>& vClients , string AccountNumber)
+	{
+
+		for (clsBankClient& Client : vClients)
+		{
+			if (Client.GetAccountNumber() == AccountNumber)
+			{
+				Client._MarkForDelete = true;
+				break;
+			}
+
+		}
+
+	}
+
 
 public:
 
@@ -157,6 +177,7 @@ public:
 		_PinCode = PinCode;
 		_Balance = Balance;
 		_State = State;
+		_MarkForDelete = false;
 	}
 
 
@@ -222,6 +243,8 @@ public:
 public:
 
 
+
+
 	static clsBankClient Find(string AccountNumber)
 	{
 
@@ -251,7 +274,7 @@ public:
 
 			File.close();
 
-			return clsBankClient::EmptyClient();
+			return clsBankClient::GetEmptyClient();
 		}
 
 
@@ -271,9 +294,14 @@ public:
 
 	}
 
-	static clsBankClient EmptyClient()
+	static clsBankClient GetEmptyClient()
 	{
 		return clsBankClient(enState::Empty, "", "", "", "", "", "", 0);
+	}
+
+	static clsBankClient GetNewClient(string AccountNumber)
+	{
+		return clsBankClient(enState::Add, "", "", "", "", AccountNumber, "", 0);
 	}
 
 	enum enSaveState { Updated, Added, svFailed_EmptyClient, svFailed_ClientNotExist, svFailed_ClientExists };
@@ -282,7 +310,6 @@ public:
 	{
 		return (_State == enState::Empty);
 	}
-
 
 	enSaveState Save()
 	{
@@ -326,7 +353,25 @@ public:
 
 	}
 
+	static bool Delete(string AccountNumber)
+	{
+		if (IsFound(AccountNumber))
+		{
+			vector<clsBankClient> vClients = _LoadDataFromFileToVector();
 
+			_MarkForDeleteInVector(vClients, AccountNumber);
+
+			_SaveVectorToFile(vClients);
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+
+	}
 
 
 
