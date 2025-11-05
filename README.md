@@ -28,8 +28,9 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 3 — Add Client in a text file .
 
-\- Feature 3 — Delete Client in a text file .
+\- Feature 4 — Delete Client in a text file .
 
+\- Feature 5 — Display List clients & Total Balances .
 
 ---
 
@@ -64,6 +65,8 @@ A bank system dealing with clients and make basic bank operations .
 &nbsp; - \[string libirary] – A user defiend helper class . 
 
 &nbsp; - \[InputValidate libirary] – A user defiend helper class . 
+
+&nbsp; - \[Utill libirary] – A user defiend helper class .
 
 
 

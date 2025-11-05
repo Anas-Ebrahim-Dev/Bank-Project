@@ -373,6 +373,26 @@ public:
 
 	}
 
+	static vector <clsBankClient> GetClients()
+	{
+		return _LoadDataFromFileToVector();
+
+	}
+
+	static double GetTotalBalances()
+	{
+		vector <clsBankClient> vClients = _LoadDataFromFileToVector();
+
+		double TotalBalances = 0;
+
+		for (clsBankClient& Client : vClients)
+		{
+			TotalBalances += Client.GetBalance();
+		}
+
+		return TotalBalances;
+
+	}
 
 
 
