@@ -232,7 +232,7 @@ public:
 		ClientCard += "\nAcc. Number : " + _AccountNumber;
 		ClientCard += "\nPassword    : " + _PinCode;
 		ClientCard += "\nBalance     : " + to_string(_Balance);
-		ClientCard += "\n----------------------------------";
+		ClientCard += "\n----------------------------------\n";
 
 		return ClientCard;
 
@@ -395,6 +395,6 @@ public:
 	}
 
 
-
+	
 };
 

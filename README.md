@@ -32,6 +32,8 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 5 — Display List clients & Total Balances .
 
+\- Feature 6 — Main menu ( List - Add - Delete - Update - find ) Clients .
+
 ---
 
 
@@ -43,6 +45,9 @@ A bank system dealing with clients and make basic bank operations .
 \- Inheritance: Bank Client inherts from person .   
 
 
+\- Classes: ( Screen , Main Menu Screen ) .
+
+\- Inheritance: Main Menu Screen inherts from Screen . 
 
 
 
