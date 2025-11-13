@@ -394,6 +394,38 @@ public:
 
 	}
 
+	bool Deposit(double Amount)
+	{
+		if (Amount > 0)
+		{
+			_Balance += Amount;
+			return true;
+		}
+
+		return false;
+
+	}
+
+	bool Withdrwa(double Amount)
+	{
+		if (Amount <= 0)
+		{
+			return false;
+		}
+
+		if (Amount <= _Balance)
+		{
+			_Balance -= Amount;
+			return true;
+		}
+		else
+		{
+			return false;
+
+		}
+
+	}
+
 
 	
 };

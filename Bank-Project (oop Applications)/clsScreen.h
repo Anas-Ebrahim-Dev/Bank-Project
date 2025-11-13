@@ -12,10 +12,10 @@ protected:
 	{
 
 		cout << "-------------------------------------------\n";
-		cout << "                 " << Tittle << '\n';
+		cout << "               " << Tittle << '\n';
 		if (SubTittle != "")
 		{
-			cout << "             " << SubTittle << '\n';
+			cout << "           " << SubTittle << '\n';
 		}
 		cout << "-------------------------------------------\n\n";
 

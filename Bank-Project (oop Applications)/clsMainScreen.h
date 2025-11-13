@@ -3,10 +3,12 @@
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsListClientsScreen.h"
-#include"clsAddNewClientScreen.h"
+#include "clsAddNewClientScreen.h"
 #include "clsDeleteClientScreen.h"
 #include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
+#include "clsTransactionsScreen.h"
+#include "clsMangeUsersScreen.h"
 using namespace std;
 
 class clsMainScreen : public clsScreen
@@ -83,12 +85,13 @@ private:
 
     static void _ShowTransactionsMenu()
     {
-        DrawScreenHeader("Show Transactions Menu");
+        clsTransactionsScreen::StartTransactionsMenu();
     }
 
     static void _ManageUsers()
     {
-        DrawScreenHeader("Manage Users");
+
+        //clsMangeUsersScreen::StartMangeUsersMenu();
 
     }
 
@@ -104,24 +107,30 @@ private:
         {
         case clsMainScreen::_enMainMenuOptions::ListClients:
             _ListClients();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::AddNewClient:
             _AddNewClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::DeleteClient:
             _DeleteClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::UpdateClient:
             _UpdateClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::FindClient:
             _FindClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::ShowTransactionsMenu:
             _ShowTransactionsMenu();
             break;
         case clsMainScreen::_enMainMenuOptions::ManageUsers:
             _ManageUsers();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::Exit:
             //Login();
@@ -151,7 +160,7 @@ public:
 
             _PerformMainMeunOperation(Choice);
 
-            system("pause=0");
+            
 
             system("cls");
 

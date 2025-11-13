@@ -34,22 +34,27 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 6 — Main menu ( List - Add - Delete - Update - find ) Clients .
 
+\- Feature 7 — Transactions menu ( Deposit - Withdraw - Total Balances - Return to Main menu ) .
+
 ---
 
 
 
-&nbsp;🧱 Object-Oriented Design 
+🧱 Object-Oriented Design 
 
 \- Classes: ( Person, Bank Client ) . 
 
-\- Inheritance: Bank Client inherts from person .   
+\- Inheritance: Bank Client inherits from person .   
 
 
 \- Classes: ( Screen , Main Menu Screen ) .
 
-\- Inheritance: Main Menu Screen inherts from Screen . 
+\- Inheritance: Main Menu Screen inherits from Screen . 
 
 
+\- Classes: (  Transactions Menu Screen ) .
+
+\- Inheritance: Transactions Menu Screen inherits from Screen . 
 
 ---
 
@@ -67,11 +72,11 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Libraries / Frameworks Used:  
 
-&nbsp; - \[string libirary] – A user defiend helper class . 
+&nbsp; - \[string library] – A user defined helper class . 
 
-&nbsp; - \[InputValidate libirary] – A user defiend helper class . 
+&nbsp; - \[Input Validate library] – A user defined helper class . 
 
-&nbsp; - \[Utill libirary] – A user defiend helper class .
+&nbsp; - \[Util library] – A user defined helper class .
 
 
 

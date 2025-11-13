@@ -18,6 +18,9 @@
     <ClCompile Include="Bank-Project (oop Applications).cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clsTransactionsScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsPerson.h">
@@ -32,7 +35,7 @@
     <ClInclude Include="clsInputValidate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsUtill.h">
+    <ClInclude Include="clsUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsScreen.h">
@@ -54,6 +57,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsFindClientScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTransactionsScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDepositScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsWithdrawScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTotalBalancesScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsMangeUsersScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
