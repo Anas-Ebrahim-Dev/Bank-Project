@@ -61,5 +61,26 @@ public:
     }
 
 
+    static bool AddLineToFile(string Line , string FileName)
+    {
+
+        fstream File;
+
+        File.open(FileName, ios::out | ios::app);
+
+        if (File.is_open())
+        {
+            File << Line << endl;
+            File.close();
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+
+
 };
 

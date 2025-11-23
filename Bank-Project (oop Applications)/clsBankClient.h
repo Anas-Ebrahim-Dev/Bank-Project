@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "clsUtil.h"
 #include "clsPerson.h"
 #include "clsString.h"
 #include "clsInputValidate.h"
@@ -114,22 +115,6 @@ private:
 
 	}
 
-	static void _AddClientToFile(string ClientAsLine)
-	{
-
-		fstream File;
-
-		File.open(FileName, ios::out | ios::app);
-
-		if (File.is_open())
-		{
-			File << ClientAsLine << endl;
-		}
-
-		File.close();
-
-	}
-
 	void _Update()
 	{
 		vector <clsBankClient> vClients = _LoadDataFromFileToVector();
@@ -140,14 +125,19 @@ private:
 
 	}
 
-	void _AddNew()
+	bool _AddNew()
 	{
+
 		string ClientAsLine = (*this)._ConvertToLine();
 
-		_AddClientToFile(ClientAsLine);
+		
+		if (clsUtill::AddLineToFile(ClientAsLine, FileName))
+		{
+			_State = enState::Update;
+			return true;
+		}
 
-		_State = enState::Update;
-
+		return false;
 
 	}
 
