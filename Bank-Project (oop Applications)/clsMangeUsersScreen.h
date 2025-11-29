@@ -1,6 +1,12 @@
 #pragma once
 #include <iostream>
 #include "clsScreen.h"
+#include "clsListUsersScreen.h"
+#include "clsUtil.h"
+#include "clsAddNewUserScreen.h"
+#include "clsDeleteUserScreen.h"
+#include"clsUpdateUserScreen.h"
+#include"clsFindUserScreen.h"
 using namespace std;
 
 class clsMangeUsersScreen :public clsScreen
@@ -46,34 +52,27 @@ private:
 
 	static void _ListUsers()
 	{
-		DrawScreenHeader("list Users");
+		clsListUsersScreen::DisplayUserList();
 	}
 
 	static bool _AddNewUser()
-	{
-		DrawScreenHeader("Add New User");
-		return true;
+	{	
+		return clsAddNewUserScreen::AddUser();
 	}
 
 	static bool _DeleteUser()
 	{
-		DrawScreenHeader("Delete User");
-		return true;
-
+		return clsDeleteUserScreen::DeleteUser();
 	}
 
 	static bool _UpdateUser()
 	{
-		DrawScreenHeader("Update User");
-		return true;
-
+		return clsUpdateUserScreen::UpdateUser();
 	}
 
 	static bool _FindUser()
 	{
-		DrawScreenHeader("Find User");
-		return true;
-
+		return clsFindUserScreen::FindUser();
 	}
 
 	static void _PerformMangeUsersOperation(_enManageUsersMenuOptions Choice)

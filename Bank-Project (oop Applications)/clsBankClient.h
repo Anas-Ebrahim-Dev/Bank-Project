@@ -9,8 +9,7 @@
 
 using namespace std;
 
-const string FileName = "BankClients.txt";
-
+const string ClientsFile = "BankClients.txt";
 
 
 
@@ -61,7 +60,7 @@ private:
 		fstream File;
 		string Line = "";
 
-		File.open(FileName, ios::in);
+		File.open(ClientsFile, ios::in);
 
 		if (File.is_open())
 		{
@@ -81,7 +80,7 @@ private:
 	{
 		fstream File;
 
-		File.open(FileName, ios::out);
+		File.open(ClientsFile, ios::out);
 
 		if (File.is_open())
 		{
@@ -131,7 +130,7 @@ private:
 		string ClientAsLine = (*this)._ConvertToLine();
 
 		
-		if (clsUtill::AddLineToFile(ClientAsLine, FileName))
+		if (clsUtill::AddLineToFile(ClientAsLine, ClientsFile))
 		{
 			_State = enState::Update;
 			return true;
@@ -242,7 +241,7 @@ public:
 		string Line = "";
 
 
-		File.open(FileName, ios::in);
+		File.open(ClientsFile, ios::in);
 
 
 
@@ -271,16 +270,16 @@ public:
 
 	}
 
-	bool IsFound()
+	bool IsActive()
 	{
 		return (_State == enState::Update);
 	}
 
-	static bool IsFound(string AccountNumber)
+	static bool IsClientFound(string AccountNumber)
 	{
 		clsBankClient Client = Find(AccountNumber);
 
-		return Client.IsFound();
+		return Client.IsActive();
 
 	}
 
@@ -311,7 +310,7 @@ public:
 			return enSaveState::svFailed_EmptyClient;
 
 		case clsBankClient::Update:
-			if (IsFound(_AccountNumber))
+			if (IsClientFound(_AccountNumber))
 			{
 				_Update();
 				return enSaveState::Updated;
@@ -323,7 +322,7 @@ public:
 			}
 
 		case clsBankClient::Add:
-			if (!(IsFound(_AccountNumber)))
+			if (!(IsClientFound(_AccountNumber)))
 			{
 				_AddNew();
 				return enSaveState::Added;
@@ -345,7 +344,7 @@ public:
 
 	static bool Delete(string AccountNumber)
 	{
-		if (IsFound(AccountNumber))
+		if (IsClientFound(AccountNumber))
 		{
 			vector<clsBankClient> vClients = _LoadDataFromFileToVector();
 

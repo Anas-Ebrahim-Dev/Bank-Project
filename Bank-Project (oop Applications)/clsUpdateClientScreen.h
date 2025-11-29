@@ -39,7 +39,7 @@ public:
 		string AccountNumber = clsInputValidate::ReadString("Please Enter AccountNumber : ");
 
 
-		while (!(clsBankClient::IsFound(AccountNumber)))
+		while (!(clsBankClient::IsClientFound(AccountNumber)))
 		{
 
 			AccountNumber = clsInputValidate::ReadString("Invalid Account . Please Enter AccountNumber : ");

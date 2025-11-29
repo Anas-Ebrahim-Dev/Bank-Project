@@ -38,6 +38,9 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 8 — business Logic Layer for User (User class) .
 
+\- Feature 9 — Mange Users menu ( List - Add - Delete - Update - find ) Users .
+
+
 ---
 
 
@@ -62,6 +65,11 @@ A bank system dealing with clients and make basic bank operations .
 \- Classes: ( User ) .
 
 \- Inheritance: Bank User inherits from person . 
+
+
+\- Classes: ( Mange Users Screen ) .
+
+\- Inheritance: Mange Users Screen inherits from Screen .
 
 ---
 
