@@ -40,6 +40,8 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 9 — Mange Users menu ( List - Add - Delete - Update - find ) Users .
 
+\- Feature 10 —  (Login - Logout).
+
 
 ---
 
@@ -70,6 +72,13 @@ A bank system dealing with clients and make basic bank operations .
 \- Classes: ( Mange Users Screen ) .
 
 \- Inheritance: Mange Users Screen inherits from Screen .
+
+
+\- Classes: ( Login Screen , session ) .
+
+\- Inheritance: Login Screen inherits from Screen .
+
+
 
 ---
 

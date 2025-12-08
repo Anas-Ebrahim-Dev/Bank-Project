@@ -9,6 +9,7 @@
 #include "clsFindClientScreen.h"
 #include "clsTransactionsScreen.h"
 #include "clsMangeUsersScreen.h"
+#include "clsSession.h"
 using namespace std;
 
 class clsMainScreen : public clsScreen
@@ -21,7 +22,7 @@ private:
     {
         ListClients = 1, AddNewClient = 2, DeleteClient = 3,
         UpdateClient = 4, FindClient = 5, ShowTransactionsMenu = 6,
-        ManageUsers = 7, Exit = 8
+        ManageUsers = 7, Logout = 8
     };
 
 
@@ -131,12 +132,16 @@ private:
         case clsMainScreen::_enMainMenuOptions::ManageUsers:
             _ManageUsers();
             break;
-        case clsMainScreen::_enMainMenuOptions::Exit:
-            //Login();
+        case clsMainScreen::_enMainMenuOptions::Logout:
+
+            clsSession::EndSession();
+
             break;
+
         default:
-            //Login();
-            break;
+
+            return;
+
         }
         
     }
@@ -149,17 +154,23 @@ public:
 
     static void StartBankSystem()
     {
+
         while(true)
         {
             _DrawMainMenuScreen();
 
             _enMainMenuOptions Choice = _ReadMainMenuOption();
 
+
             system("cls");
 
             _PerformMainMeunOperation(Choice);
 
-            
+            if (Choice == _enMainMenuOptions::Logout)
+            {
+                return;
+            }
+
 
             system("cls");
 
