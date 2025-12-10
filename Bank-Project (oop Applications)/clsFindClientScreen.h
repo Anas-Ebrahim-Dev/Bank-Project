@@ -14,6 +14,15 @@ public:
 	static bool FindClient()
 	{
 
+
+		if (!(clsSession::CheckUserPermission(clsBankUser::enPermissions::FindClient)))
+		{
+			clsMessages::ShowAccessDeniedMessage();
+			return false;
+		}
+
+
+
 		DrawScreenHeader("Find Client Screen");
 
 		string AccountNumber = clsInputValidate::ReadString("Please Enter AccountNumber : ");

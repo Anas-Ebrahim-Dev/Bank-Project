@@ -5,6 +5,8 @@
 #include "clsDepositScreen.h"
 #include "clsWithdrawScreen.h"
 #include "clsTotalBalancesScreen.h"
+#include"clsSession.h"
+#include "clsMessages.h"
 using namespace std;
 
 
@@ -100,6 +102,16 @@ public:
 
 	static void StartTransactionsMenu()
 	{
+
+		if (!(clsSession::CheckUserPermission(clsBankUser::enPermissions::Tranactions)))
+		{
+			clsMessages::ShowAccessDeniedMessage();
+			system("pause=0");
+
+			return;
+		}
+
+
 		while (true)
 		{
 			_DrawTransactionsMenu();

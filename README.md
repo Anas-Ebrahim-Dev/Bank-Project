@@ -42,6 +42,8 @@ A bank system dealing with clients and make basic bank operations .
 
 \- Feature 10 —  (Login - Logout).
 
+\- Feature 11 —  Apply Permissions .
+
 
 ---
 

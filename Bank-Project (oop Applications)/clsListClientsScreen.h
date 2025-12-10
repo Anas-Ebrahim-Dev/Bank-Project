@@ -2,8 +2,9 @@
 #include "clsScreen.h"
 #include <iostream>
 #include"clsBankClient.h"
+#include"clsBankUser.h"
 #include <iomanip>
-
+#include "clsMessages.h"
 using namespace std;
 
 class clsListClientsScreen : public clsScreen
@@ -31,6 +32,12 @@ public:
 
 	static void DisplayClientsList()
 	{
+
+		if (!(clsSession::CheckUserPermission(clsBankUser::enPermissions::ListClients)))
+		{
+			clsMessages::ShowAccessDeniedMessage();
+			return;
+		}
 
 		vector <clsBankClient> vClients = clsBankClient::GetClients();
 

@@ -36,6 +36,13 @@ public:
 	static bool AddClient()
 	{
 
+		if (!(clsSession::CheckUserPermission(clsBankUser::enPermissions::AddNewClient)))
+		{
+			clsMessages::ShowAccessDeniedMessage();
+			return false;
+		}
+
+
 		DrawScreenHeader("Adding New Client");
 
 

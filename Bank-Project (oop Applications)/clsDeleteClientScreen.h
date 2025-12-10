@@ -14,6 +14,15 @@ public:
 	static bool DeleteClient()
 	{
 
+		if (!(clsSession::CheckUserPermission(clsBankUser::enPermissions::DeleteClient)))
+		{
+			clsMessages::ShowAccessDeniedMessage();
+			return false;
+		}
+
+
+
+
 		DrawScreenHeader("Delete Client Screen ");
 
 		string AccountNumber = clsInputValidate::ReadString("Enter account number : ");

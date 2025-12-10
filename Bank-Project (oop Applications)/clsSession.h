@@ -31,7 +31,10 @@ public:
 		_LoggedInUser = clsBankUser::GetEmptyUser();
 	}
 
-
+	static bool CheckUserPermission(clsBankUser::enPermissions OperationPermission)
+	{
+		return clsBankUser::DoesUserHavePermission(OperationPermission, _LoggedInUser.GetPermission());
+	}
 
 
 };

@@ -24,11 +24,11 @@ public:
 
 private:
 
-	string _AccountNumber;
-	string _PinCode;
-	double _Balance;
-	enState _State;
-	bool _MarkForDelete;
+	string _AccountNumber = "";
+	string _PinCode = "";
+	double _Balance = 0;
+	enState _State = Empty;
+	bool _MarkForDelete = false;
 
 
 private:
@@ -166,7 +166,7 @@ public:
 		_PinCode = PinCode;
 		_Balance = Balance;
 		_State = State;
-		_MarkForDelete = false;
+
 	}
 
 

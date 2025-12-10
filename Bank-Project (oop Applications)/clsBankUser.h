@@ -28,11 +28,11 @@ public:
 
 private:
 
-	string _UserName;
-	string _Password;
-	int _Permission;
-    enState _State;
-    bool _MarkForDelete;
+    string _UserName = "";
+    string _Password = "";
+    int _Permission = 0;
+    enState _State = enState::Empty;
+    bool _MarkForDelete = false;
 
 private:
 
@@ -176,7 +176,7 @@ public:
 		_Password = Password;
 		_Permission = Permission;
         _State = State;
-        _MarkForDelete = false;
+
 
 	}
 
@@ -403,6 +403,11 @@ public:
     static clsBankUser GetEmptyUser()
     {
         return clsBankUser(enState::Empty, "", "", "", "", "", "", 0);
+    }
+
+    static bool DoesUserHavePermission(enPermissions OperationPermission , int UserPermission)
+    {
+        return (int(OperationPermission) & UserPermission);
     }
 
 

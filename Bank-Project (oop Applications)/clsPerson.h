@@ -8,10 +8,10 @@ class clsPerson
 private:
 
 
-	string _FirstName;
-	string _LastName;
-	string _Email;
-	string _Phone;
+	string _FirstName = "";
+	string _LastName = "";
+	string _Email = "";
+	string _Phone = "";
 
 
 public:
